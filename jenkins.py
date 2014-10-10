@@ -222,7 +222,7 @@ class View(object):
         return self.server.json(url, errmsg=err)
 
     @classmethod
-    def addJob(job):
+    def addJob(self, job):
         '''Add job to the view.'''
 
         if not self.exists:
