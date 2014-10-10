@@ -221,7 +221,6 @@ class View(object):
         err = 'view "%s" does not exist' % self.name
         return self.server.json(url, errmsg=err)
 
-    @classmethod
     def addJob(self, job):
         '''Add job to the view.'''
 
@@ -232,9 +231,9 @@ class View(object):
             raise JenkinsError('job "%s" does not exist' % job.name)
 
         params = {'name': job.name}
-        res = server.post('addJobToView', params=params)
+        res = self.server.post('addJobToView', params=params)
 
-        if not r.status_code == 200:
+        if not res.status_code == 200:
             msg = 'could not add job "%s" to view "%s"'
             raise JenkinsError(msg % (job.name, self.name))
 
